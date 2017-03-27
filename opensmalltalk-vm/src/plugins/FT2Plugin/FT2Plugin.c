@@ -559,7 +559,7 @@ primitiveCopyToExternalMemory(void)
 		return null;
 	}
 	errorCode = 0;
-	byteSize = byteSizeOf(((sqInt)(long)(aByteArray) - BaseHeaderSize));
+	byteSize = byteSizeOf(((sqInt)(sqIntptr_t)(aByteArray) - BaseHeaderSize));
 	if (failed()) {
 		return null;
 	}
@@ -696,10 +696,6 @@ primitiveErrorCode(void)
 {
 	sqInt _return_value;
 
-	if (failed()) {
-		ftParameterError();
-		return null;
-	}
 	_return_value = positive32BitIntegerFor((FT_ERROR_BASE(errorCode)));
 	if (failed()) {
 		ftParameterError();
@@ -1054,15 +1050,7 @@ primitiveFail();
 	}
 	buffer = FT_Get_Sfnt_Table(face,ft_sfnt_os2);
 	if (buffer == 0) {
-if (failed()) {
-			ftParameterError();
-			return null;
-		}
-		_return_value = integerObjectOf(-1);
-		if (failed()) {
-			ftParameterError();
-			return null;
-		}
+_return_value = integerObjectOf(-1);
 		popthenPush(1, _return_value);
 		return null;
 	}
@@ -1578,10 +1566,6 @@ primitiveModuleErrorCode(void)
 {
 	sqInt _return_value;
 
-	if (failed()) {
-		ftParameterError();
-		return null;
-	}
 	_return_value = positive32BitIntegerFor((FT_ERROR_MODULE(errorCode)));
 	if (failed()) {
 		ftParameterError();
@@ -1616,7 +1600,7 @@ primitiveNewFaceFromFileAndIndex(void)
 		return null;
 	}
 	errorCode = 0;
-	byteSize = byteSizeOf(((sqInt)(long)(fontFilePath) - BaseHeaderSize));
+	byteSize = byteSizeOf(((sqInt)(sqIntptr_t)(fontFilePath) - BaseHeaderSize));
 	if (failed()) {
 		return null;
 	}
